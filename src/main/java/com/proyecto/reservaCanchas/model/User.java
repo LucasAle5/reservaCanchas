@@ -1,6 +1,5 @@
 package com.proyecto.reservaCanchas.model;
 
-import com.proyecto.reservaCanchas.Enum.Rol;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +11,7 @@ public class User {
     private String nombre;
     private String apellido;
     private String email;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private Rol rol;
     @OneToOne(mappedBy = "user")
     private Reserva reserva;
