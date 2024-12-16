@@ -1,13 +1,10 @@
 package com.proyecto.reservaCanchas.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.proyecto.reservaCanchas.Enum.StatusReserva;
+import jakarta.persistence.*;
+import org.springframework.data.domain.Page;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 public class Reserva {
@@ -16,6 +13,76 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDateTime tiempoDeUso;
+    @Enumerated(EnumType.STRING)
+    private StatusReserva statusReserva;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
+    @OneToOne
+    @JoinColumn(name = "pago_id")
+    private Pago pago;
+    @OneToOne
+    @JoinColumn(name = "cancha_id")
+    private Cancha cancha;
 
+    public Reserva() {
+    }
+
+    public Reserva(int id, LocalDateTime tiempoDeUso, StatusReserva statusReserva, User user, Pago pago, Cancha cancha) {
+        this.id = id;
+        this.tiempoDeUso = tiempoDeUso;
+        this.statusReserva = statusReserva;
+        this.user = user;
+        this.pago = pago;
+        this.cancha = cancha;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getTiempoDeUso() {
+        return tiempoDeUso;
+    }
+
+    public void setTiempoDeUso(LocalDateTime tiempoDeUso) {
+        this.tiempoDeUso = tiempoDeUso;
+    }
+
+    public StatusReserva getStatusReserva() {
+        return statusReserva;
+    }
+
+    public void setStatusReserva(StatusReserva statusReserva) {
+        this.statusReserva = statusReserva;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Pago getPago() {
+        return pago;
+    }
+
+    public void setPago(Pago pago) {
+        this.pago = pago;
+    }
+
+    public Cancha getCancha() {
+        return cancha;
+    }
+
+    public void setCancha(Cancha cancha) {
+        this.cancha = cancha;
+    }
 }

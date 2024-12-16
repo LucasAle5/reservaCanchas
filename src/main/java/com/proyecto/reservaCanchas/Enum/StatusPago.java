@@ -1,4 +1,10 @@
 package com.proyecto.reservaCanchas.Enum;
 
-public class StatusPago {
+public enum StatusPago {
+    PENDIENTE,
+    PAGADO,
+    CANCELADO,
+    FALLIDO,
+    REEMBOLSADO
+
 }
