@@ -1,8 +1,6 @@
 package com.proyecto.reservaCanchas.model;
 
-import com.proyecto.reservaCanchas.Enum.StatusReserva;
 import jakarta.persistence.*;
-import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +11,8 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDateTime tiempoDeUso;
-    @Enumerated(EnumType.STRING)
+    @OneToOne
+    @JoinColumn(name = "status_reserva_id")
     private StatusReserva statusReserva;
     @OneToOne
     @JoinColumn(name = "user_id")

@@ -1,6 +1,5 @@
 package com.proyecto.reservaCanchas.model;
 
-import com.proyecto.reservaCanchas.Enum.TipoCancha;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -16,7 +15,7 @@ public class Cancha {
     private BigDecimal precio;
     private LocalDateTime horaInicio;
     private LocalDateTime hora_fin;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private TipoCancha tipoCancha;
 
     public Cancha() {

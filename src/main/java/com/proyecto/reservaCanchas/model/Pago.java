@@ -1,7 +1,5 @@
 package com.proyecto.reservaCanchas.model;
 
-import com.proyecto.reservaCanchas.Enum.MetodoPago;
-import com.proyecto.reservaCanchas.Enum.StatusPago;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -15,9 +13,9 @@ public class Pago {
     private Long id;
     private BigDecimal monto;
     private LocalDateTime tiempoEsperaDePago;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private MetodoPago metodoPago;
-    @Enumerated(EnumType.STRING)
+    @OneToOne
     private StatusPago statusPago;
 
     public Pago() {
