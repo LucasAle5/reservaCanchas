@@ -6,7 +6,13 @@ import com.proyecto.reservaCanchas.model.User;
 
 public interface UserService {
 
-    UserResponseDTO createUser(UserRequestDTO userRequestDTO);
+    UserResponseDTO createUserCliente(UserRequestDTO userRequestDTO);
+
+    User findUserByEmail(String email) throws Exception;
+
+
+
+
 
 
 }
