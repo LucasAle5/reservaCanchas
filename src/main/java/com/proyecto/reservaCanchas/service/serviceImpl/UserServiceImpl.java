@@ -2,7 +2,6 @@ package com.proyecto.reservaCanchas.service.serviceImpl;
 
 import com.proyecto.reservaCanchas.dto.request.UserRequestDTO;
 import com.proyecto.reservaCanchas.dto.request.UserResponseDTO;
-import com.proyecto.reservaCanchas.exception.GlobalExceptionHandler;
 import com.proyecto.reservaCanchas.exception.ResourceAlreadyExistsException;
 import com.proyecto.reservaCanchas.exception.ResourceNotFoundException;
 import com.proyecto.reservaCanchas.mapper.UserMapper;
@@ -29,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDTO createUserCliente(UserRequestDTO userRequestDTO) {
 
-        if(userRequestDTO.getEmail() != null){
+        if(userRepository.findByEmail(userRequestDTO.getEmail()).isPresent()){
             throw new ResourceAlreadyExistsException(
                     "El email " + userRequestDTO.getEmail() + " ya esta registrado a una cuenta",
                     HttpStatus.CONFLICT
@@ -40,6 +39,7 @@ public class UserServiceImpl implements UserService {
         user.setNombre(userRequestDTO.getNombre());
         user.setApellido(userRequestDTO.getApellido());
         user.setEmail(userRequestDTO.getEmail());
+        user.setPassword(userRequestDTO.getPassword());
 
         Rol rolCliente = rolRepository.findByNombre("cliente");
         user.setRol(rolCliente);

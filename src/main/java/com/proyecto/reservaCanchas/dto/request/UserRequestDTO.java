@@ -11,14 +11,17 @@ public class UserRequestDTO {
     private String apellido;
     @Email(message = "Debe proporcionar un email valido")
     private String email;
+    @NotBlank(message = "la contraseña es obligatoria")
+    private String password;
 
     public UserRequestDTO() {
     }
 
-    public UserRequestDTO( String nombre, String apellido, String email) {
+    public UserRequestDTO( String nombre, String apellido, String email, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.password = password;
     }
     public String getNombre() {
         return nombre;
@@ -42,5 +45,13 @@ public class UserRequestDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -8,7 +8,8 @@ public interface UserService {
 
     UserResponseDTO createUserCliente(UserRequestDTO userRequestDTO);
 
-    User findUserByEmail(String email) throws Exception;
+    User findUserByEmail(String email);
+
 
 
 

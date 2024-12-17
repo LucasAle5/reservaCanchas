@@ -13,20 +13,20 @@ public class Cancha {
     private Long id;
     private String ubicacion;
     private BigDecimal precio;
-    private LocalDateTime horaInicio;
-    private LocalDateTime hora_fin;
+    private LocalDateTime horaApertura;
+    private LocalDateTime horaCierre;
     @ManyToOne
     private TipoCancha tipoCancha;
 
     public Cancha() {
     }
 
-    public Cancha(Long id, String ubicacion, BigDecimal precio, LocalDateTime horaInicio, LocalDateTime hora_fin, TipoCancha tipoCancha) {
+    public Cancha(Long id, String ubicacion, BigDecimal precio, LocalDateTime horaApertura, LocalDateTime horaCierre, TipoCancha tipoCancha) {
         this.id = id;
         this.ubicacion = ubicacion;
         this.precio = precio;
-        this.horaInicio = horaInicio;
-        this.hora_fin = hora_fin;
+        this.horaApertura = horaApertura;
+        this.horaCierre = horaCierre;
         this.tipoCancha = tipoCancha;
     }
 
@@ -54,20 +54,20 @@ public class Cancha {
         this.precio = precio;
     }
 
-    public LocalDateTime getHoraInicio() {
-        return horaInicio;
+    public LocalDateTime getHoraApertura() {
+        return horaApertura;
     }
 
-    public void setHoraInicio(LocalDateTime horaInicio) {
-        this.horaInicio = horaInicio;
+    public void setHoraApertura(LocalDateTime horaApertura) {
+        this.horaApertura = horaApertura;
     }
 
-    public LocalDateTime getHora_fin() {
-        return hora_fin;
+    public LocalDateTime getHoraCierre() {
+        return horaCierre;
     }
 
-    public void setHora_fin(LocalDateTime hora_fin) {
-        this.hora_fin = hora_fin;
+    public void setHoraCierre(LocalDateTime horaCierre) {
+        this.horaCierre = horaCierre;
     }
 
     public TipoCancha getTipoCancha() {

@@ -11,6 +11,7 @@ public class User {
     private String nombre;
     private String apellido;
     private String email;
+    private String password;
     @ManyToOne
     private Rol rol;
     @OneToOne(mappedBy = "user")
@@ -19,13 +20,14 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String nombre, String apellido, String email, Rol rol, Reserva reserva) {
+    public User(Long id, String nombre, String apellido, String email, String password, Rol rol, Reserva reserva) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.rol = rol;
         this.reserva = reserva;
+        this.password = password;
     }
 
     public Long getId() {
@@ -74,5 +76,13 @@ public class User {
 
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
