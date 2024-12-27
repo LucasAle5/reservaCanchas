@@ -1,5 +1,6 @@
 package com.proyecto.reservaCanchas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class User {
     private Reserva reserva;
 
     @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Cancha> canchas;
 
     public User() {
