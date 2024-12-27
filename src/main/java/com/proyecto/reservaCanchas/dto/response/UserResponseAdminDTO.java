@@ -1,21 +1,24 @@
 package com.proyecto.reservaCanchas.dto.response;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import com.proyecto.reservaCanchas.model.Cancha;
 
-public class UserResponseDTO {
+import java.util.List;
+
+public class UserResponseAdminDTO {
 
     private String nombre;
     private String apellido;
     private String email;
+    private List<Cancha> canchas;
 
-    public UserResponseDTO() {
+    public UserResponseAdminDTO() {
     }
 
-    public UserResponseDTO(String nombre, String apellido, String email) {
+    public UserResponseAdminDTO(String nombre, String apellido, String email, List<Cancha> canchas) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.canchas = canchas;
     }
 
     public String getNombre() {
@@ -40,5 +43,13 @@ public class UserResponseDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Cancha> getCanchas() {
+        return canchas;
+    }
+
+    public void setCanchas(List<Cancha> canchas) {
+        this.canchas = canchas;
     }
 }
