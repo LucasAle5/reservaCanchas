@@ -1,50 +1,33 @@
-package com.proyecto.reservaCanchas.model;
+package com.proyecto.reservaCanchas.dto.response;
 
-import jakarta.persistence.*;
+import com.proyecto.reservaCanchas.model.TipoCancha;
+import com.proyecto.reservaCanchas.model.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-public class Cancha {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CanchaResponseDTO {
     private String ubicacion;
     private BigDecimal precio;
     private LocalDateTime horaApertura;
     private LocalDateTime horaCierre;
+    private TipoCancha tipoCancha;
+    private User admin;
     private Double latitud;
     private Double longitud;
-    @ManyToOne
-    @JoinColumn(name = "admin_id", nullable = false)
-    private User admin;
-    @ManyToOne
-    private TipoCancha tipoCancha;
 
-    public Cancha() {
+    public CanchaResponseDTO() {
     }
 
-    public Cancha(Long id, String ubicacion, BigDecimal precio, LocalDateTime horaApertura, LocalDateTime horaCierre, Double latitud, Double longitud,
-                  TipoCancha tipoCancha, User admin) {
-        this.id = id;
+    public CanchaResponseDTO(String ubicacion, BigDecimal precio, LocalDateTime horaApertura, LocalDateTime horaCierre, TipoCancha tipoCancha, User admin, Double latitud, Double longitud) {
         this.ubicacion = ubicacion;
         this.precio = precio;
         this.horaApertura = horaApertura;
         this.horaCierre = horaCierre;
-        this.latitud = latitud;
-        this.longitud = longitud;
         this.tipoCancha = tipoCancha;
         this.admin = admin;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     public String getUbicacion() {

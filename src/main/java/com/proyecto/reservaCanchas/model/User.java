@@ -2,6 +2,8 @@ package com.proyecto.reservaCanchas.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class User {
 
@@ -11,21 +13,28 @@ public class User {
     private String nombre;
     private String apellido;
     private String email;
+    private String password;
     @ManyToOne
     private Rol rol;
     @OneToOne(mappedBy = "user")
     private Reserva reserva;
 
+    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
+    private List<Cancha> canchas;
+
     public User() {
     }
 
-    public User(Long id, String nombre, String apellido, String email, Rol rol, Reserva reserva) {
+    public User(Long id, String nombre, String apellido, String email, String password, Rol rol, Reserva reserva,
+                List<Cancha> canchas) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.rol = rol;
         this.reserva = reserva;
+        this.password = password;
+        this.canchas = canchas;
     }
 
     public Long getId() {
@@ -75,4 +84,21 @@ public class User {
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Cancha> getCanchas() {
+        return canchas;
+    }
+
+    public void setCanchas(List<Cancha> canchas) {
+        this.canchas = canchas;
+    }
 }
+
