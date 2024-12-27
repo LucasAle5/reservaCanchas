@@ -1,48 +1,32 @@
-package com.proyecto.reservaCanchas.model;
+package com.proyecto.reservaCanchas.dto.request;
 
-import jakarta.persistence.*;
+import com.proyecto.reservaCanchas.model.Cancha;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
-@Entity
-public class User {
+public class UserRequestAdminDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
+    @NotBlank(message = "El apellido es obligatorio")
     private String apellido;
+    @Email(message = "Debe proporcionar un email valido")
     private String email;
+    @NotBlank(message = "la contraseña es obligatoria")
     private String password;
-    @ManyToOne
-    private Rol rol;
-    @OneToOne(mappedBy = "user")
-    private Reserva reserva;
-
-    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
     private List<Cancha> canchas;
 
-    public User() {
+    public UserRequestAdminDTO() {
     }
 
-    public User(Long id, String nombre, String apellido, String email, String password, Rol rol, Reserva reserva,
-                List<Cancha> canchas) {
-        this.id = id;
+    public UserRequestAdminDTO(String nombre, String apellido, String email, String password, List<Cancha> canchas) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.rol = rol;
-        this.reserva = reserva;
         this.password = password;
         this.canchas = canchas;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -69,22 +53,6 @@ public class User {
         this.email = email;
     }
 
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
-
-    public Reserva getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -101,4 +69,3 @@ public class User {
         this.canchas = canchas;
     }
 }
-

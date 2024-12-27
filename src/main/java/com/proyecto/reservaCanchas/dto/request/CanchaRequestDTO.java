@@ -1,50 +1,38 @@
-package com.proyecto.reservaCanchas.model;
+package com.proyecto.reservaCanchas.dto.request;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-public class Cancha {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CanchaRequestDTO {
+    @NotBlank(message = "Debe proporciona la direccion de la cancha")
     private String ubicacion;
+    @NotNull(message = "Debe indicar el precio por hora de la cancha")
     private BigDecimal precio;
+    @NotNull(message = "Debe indicar el horario de apertura de la cancha")
     private LocalDateTime horaApertura;
+    @NotNull(message = "Debe indicar el horario de cierre de la cancha")
     private LocalDateTime horaCierre;
+    private Long tipoCanchaId;
+    private Long adminId;
     private Double latitud;
     private Double longitud;
-    @ManyToOne
-    @JoinColumn(name = "admin_id", nullable = false)
-    private User admin;
-    @ManyToOne
-    private TipoCancha tipoCancha;
 
-    public Cancha() {
+    public CanchaRequestDTO() {
     }
 
-    public Cancha(Long id, String ubicacion, BigDecimal precio, LocalDateTime horaApertura, LocalDateTime horaCierre, Double latitud, Double longitud,
-                  TipoCancha tipoCancha, User admin) {
-        this.id = id;
+    public CanchaRequestDTO(String ubicacion, BigDecimal precio, LocalDateTime horaApertura, LocalDateTime horaCierre, Long tipoCanchaId, Long adminId,
+                            Double latitud, Double longitud) {
         this.ubicacion = ubicacion;
         this.precio = precio;
         this.horaApertura = horaApertura;
         this.horaCierre = horaCierre;
+        this.tipoCanchaId = tipoCanchaId;
+        this.adminId = adminId;
         this.latitud = latitud;
         this.longitud = longitud;
-        this.tipoCancha = tipoCancha;
-        this.admin = admin;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUbicacion() {
@@ -79,20 +67,20 @@ public class Cancha {
         this.horaCierre = horaCierre;
     }
 
-    public TipoCancha getTipoCancha() {
-        return tipoCancha;
+    public Long getTipoCanchaId() {
+        return tipoCanchaId;
     }
 
-    public void setTipoCancha(TipoCancha tipoCancha) {
-        this.tipoCancha = tipoCancha;
+    public void setTipoCanchaId(Long tipoCanchaId) {
+        this.tipoCanchaId = tipoCanchaId;
     }
 
-    public User getAdmin() {
-        return admin;
+    public Long getAdminId() {
+        return adminId;
     }
 
-    public void setAdmin(User admin) {
-        this.admin = admin;
+    public void setAdminId(Long admin) {
+        this.adminId = admin;
     }
 
     public Double getLatitud() {

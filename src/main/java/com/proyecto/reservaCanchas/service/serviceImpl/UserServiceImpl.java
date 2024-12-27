@@ -1,7 +1,9 @@
 package com.proyecto.reservaCanchas.service.serviceImpl;
 
+import com.proyecto.reservaCanchas.dto.request.UserRequestAdminDTO;
 import com.proyecto.reservaCanchas.dto.request.UserRequestDTO;
-import com.proyecto.reservaCanchas.dto.request.UserResponseDTO;
+import com.proyecto.reservaCanchas.dto.response.UserResponseAdminDTO;
+import com.proyecto.reservaCanchas.dto.response.UserResponseDTO;
 import com.proyecto.reservaCanchas.exception.ResourceAlreadyExistsException;
 import com.proyecto.reservaCanchas.exception.ResourceNotFoundException;
 import com.proyecto.reservaCanchas.mapper.UserMapper;
@@ -54,4 +56,30 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException(email));
     }
+
+    @Override
+    public UserResponseAdminDTO createUserAdmin(UserRequestAdminDTO userRequestAdminDTO) {
+
+        if (userRepository.findByEmail(userRequestAdminDTO.getEmail()).isPresent()) {
+            throw  new ResourceAlreadyExistsException("El email " + userRequestAdminDTO.getEmail() + "ya pertenece a una cuenta registrada",
+                    HttpStatus.CONFLICT);
+        }
+
+        User admin = new User();
+
+        admin.setNombre(userRequestAdminDTO.getNombre());
+        admin.setApellido(userRequestAdminDTO.getApellido());
+        admin.setEmail(userRequestAdminDTO.getEmail());
+        admin.setCanchas(userRequestAdminDTO.getCanchas());
+        admin.setPassword(userRequestAdminDTO.getPassword());
+
+        Rol rolCliente = rolRepository.findByNombre("admin");
+        admin.setRol(rolCliente);
+
+        userRepository.save(admin);
+
+        return userMapper.adminToResponseAdmin(admin);
+    }
+
+
 }
