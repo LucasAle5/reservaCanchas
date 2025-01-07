@@ -1,6 +1,5 @@
 package com.proyecto.reservaCanchas.controller;
 
-import com.proyecto.reservaCanchas.dto.response.TipoCanchaResponseDTO;
 import com.proyecto.reservaCanchas.model.TipoCancha;
 import com.proyecto.reservaCanchas.repository.TipoCanchaRepository;
 import com.proyecto.reservaCanchas.rest.GenericResponse;
