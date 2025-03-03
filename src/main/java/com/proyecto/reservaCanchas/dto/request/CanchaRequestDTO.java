@@ -5,16 +5,21 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class CanchaRequestDTO {
     @NotBlank(message = "Debe proporciona la direccion de la cancha")
     private String ubicacion;
+
     @NotNull(message = "Debe indicar el precio por hora de la cancha")
     private BigDecimal precio;
+
     @NotNull(message = "Debe indicar el horario de apertura de la cancha")
-    private LocalDateTime horaApertura;
+    private LocalTime horaApertura;
+
     @NotNull(message = "Debe indicar el horario de cierre de la cancha")
-    private LocalDateTime horaCierre;
+    private LocalTime horaCierre;
+
     private Long tipoCanchaId;
     private Long adminId;
     private Double latitud;
@@ -23,8 +28,7 @@ public class CanchaRequestDTO {
     public CanchaRequestDTO() {
     }
 
-    public CanchaRequestDTO(String ubicacion, BigDecimal precio, LocalDateTime horaApertura, LocalDateTime horaCierre, Long tipoCanchaId, Long adminId,
-                            Double latitud, Double longitud) {
+    public CanchaRequestDTO(String ubicacion, BigDecimal precio, LocalTime horaApertura, LocalTime horaCierre, Long tipoCanchaId, Long adminId, Double latitud, Double longitud) {
         this.ubicacion = ubicacion;
         this.precio = precio;
         this.horaApertura = horaApertura;
@@ -51,19 +55,19 @@ public class CanchaRequestDTO {
         this.precio = precio;
     }
 
-    public LocalDateTime getHoraApertura() {
+    public LocalTime getHoraApertura() {
         return horaApertura;
     }
 
-    public void setHoraApertura(LocalDateTime horaApertura) {
+    public void setHoraApertura(LocalTime horaApertura) {
         this.horaApertura = horaApertura;
     }
 
-    public LocalDateTime getHoraCierre() {
+    public LocalTime getHoraCierre() {
         return horaCierre;
     }
 
-    public void setHoraCierre(LocalDateTime horaCierre) {
+    public void setHoraCierre(LocalTime horaCierre) {
         this.horaCierre = horaCierre;
     }
 

@@ -16,6 +16,7 @@ public class User {
     private String email;
     private String password;
     @ManyToOne
+    @JoinColumn(name = "rol_id", nullable = false)
     private Rol rol;
     @OneToOne(mappedBy = "user")
     private Reserva reserva;

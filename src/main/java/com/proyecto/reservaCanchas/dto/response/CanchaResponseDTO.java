@@ -5,12 +5,13 @@ import com.proyecto.reservaCanchas.model.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class CanchaResponseDTO {
     private String ubicacion;
     private BigDecimal precio;
-    private LocalDateTime horaApertura;
-    private LocalDateTime horaCierre;
+    private LocalTime horaApertura;
+    private LocalTime horaCierre;
     private TipoCancha tipoCancha;
     private User admin;
     private Double latitud;
@@ -19,7 +20,7 @@ public class CanchaResponseDTO {
     public CanchaResponseDTO() {
     }
 
-    public CanchaResponseDTO(String ubicacion, BigDecimal precio, LocalDateTime horaApertura, LocalDateTime horaCierre, TipoCancha tipoCancha, User admin, Double latitud, Double longitud) {
+    public CanchaResponseDTO(String ubicacion, BigDecimal precio, LocalTime horaApertura, LocalTime horaCierre, TipoCancha tipoCancha, User admin, Double latitud, Double longitud) {
         this.ubicacion = ubicacion;
         this.precio = precio;
         this.horaApertura = horaApertura;
@@ -46,19 +47,19 @@ public class CanchaResponseDTO {
         this.precio = precio;
     }
 
-    public LocalDateTime getHoraApertura() {
+    public LocalTime getHoraApertura() {
         return horaApertura;
     }
 
-    public void setHoraApertura(LocalDateTime horaApertura) {
+    public void setHoraApertura(LocalTime horaApertura) {
         this.horaApertura = horaApertura;
     }
 
-    public LocalDateTime getHoraCierre() {
+    public LocalTime getHoraCierre() {
         return horaCierre;
     }
 
-    public void setHoraCierre(LocalDateTime horaCierre) {
+    public void setHoraCierre(LocalTime horaCierre) {
         this.horaCierre = horaCierre;
     }
 
