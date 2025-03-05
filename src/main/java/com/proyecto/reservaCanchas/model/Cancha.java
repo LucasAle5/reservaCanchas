@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class Cancha {
@@ -11,10 +12,17 @@ public class Cancha {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String ubicacion;
+
     private BigDecimal precio;
-    private LocalDateTime horaApertura;
-    private LocalDateTime horaCierre;
+
+    @Column(name = "hora_apertura")
+    private LocalTime horaApertura;
+
+    @Column(name = "hora_cierre")
+    private LocalTime horaCierre;
+
     private Double latitud;
     private Double longitud;
     @ManyToOne
@@ -26,8 +34,7 @@ public class Cancha {
     public Cancha() {
     }
 
-    public Cancha(Long id, String ubicacion, BigDecimal precio, LocalDateTime horaApertura, LocalDateTime horaCierre, Double latitud, Double longitud,
-                  TipoCancha tipoCancha, User admin) {
+    public Cancha(Long id, String ubicacion, BigDecimal precio, LocalTime horaApertura, LocalTime horaCierre, Double latitud, Double longitud, User admin, TipoCancha tipoCancha) {
         this.id = id;
         this.ubicacion = ubicacion;
         this.precio = precio;
@@ -35,8 +42,8 @@ public class Cancha {
         this.horaCierre = horaCierre;
         this.latitud = latitud;
         this.longitud = longitud;
-        this.tipoCancha = tipoCancha;
         this.admin = admin;
+        this.tipoCancha = tipoCancha;
     }
 
     public Long getId() {
@@ -63,19 +70,19 @@ public class Cancha {
         this.precio = precio;
     }
 
-    public LocalDateTime getHoraApertura() {
+    public LocalTime getHoraApertura() {
         return horaApertura;
     }
 
-    public void setHoraApertura(LocalDateTime horaApertura) {
+    public void setHoraApertura(LocalTime horaApertura) {
         this.horaApertura = horaApertura;
     }
 
-    public LocalDateTime getHoraCierre() {
+    public LocalTime getHoraCierre() {
         return horaCierre;
     }
 
-    public void setHoraCierre(LocalDateTime horaCierre) {
+    public void setHoraCierre(LocalTime horaCierre) {
         this.horaCierre = horaCierre;
     }
 

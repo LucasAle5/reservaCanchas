@@ -3,6 +3,7 @@ package com.proyecto.reservaCanchas.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class Reserva {
@@ -10,10 +11,13 @@ public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private LocalDateTime tiempoDeUso;
+
+    private LocalTime tiempoDeUso;
+
     @OneToOne
     @JoinColumn(name = "status_reserva_id")
     private StatusReserva statusReserva;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -21,6 +25,7 @@ public class Reserva {
     @OneToOne
     @JoinColumn(name = "pago_id")
     private Pago pago;
+
     @OneToOne
     @JoinColumn(name = "cancha_id")
     private Cancha cancha;
@@ -28,7 +33,7 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(int id, LocalDateTime tiempoDeUso, StatusReserva statusReserva, User user, Pago pago, Cancha cancha) {
+    public Reserva(int id, LocalTime tiempoDeUso, StatusReserva statusReserva, User user, Pago pago, Cancha cancha) {
         this.id = id;
         this.tiempoDeUso = tiempoDeUso;
         this.statusReserva = statusReserva;
@@ -45,11 +50,11 @@ public class Reserva {
         this.id = id;
     }
 
-    public LocalDateTime getTiempoDeUso() {
+    public LocalTime getTiempoDeUso() {
         return tiempoDeUso;
     }
 
-    public void setTiempoDeUso(LocalDateTime tiempoDeUso) {
+    public void setTiempoDeUso(LocalTime tiempoDeUso) {
         this.tiempoDeUso = tiempoDeUso;
     }
 
